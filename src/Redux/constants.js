@@ -1,0 +1,2 @@
+export const GET_CANDIDATES = 'candidates/GET_CANDIDATES';
+export const SET_CANDIDATES_RANDOM_STATUSES = 'candidates/SET_CANDIDATES_RANDOM_STATUSES';
