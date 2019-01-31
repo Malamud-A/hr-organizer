@@ -5,6 +5,10 @@ const initialState = {
     visible: false,
     data: {},
   },
+  candidatesFilters: {
+    visible: false,
+    data: {},
+  },
 };
 
 export default (state = initialState, action) => {

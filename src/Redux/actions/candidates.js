@@ -4,6 +4,8 @@ import {
   SET_CANDIDATES_RANDOM_STATUSES,
   CONFIRM_CANDIDATES_READY_STATE,
   MODIFY_CANDIDATE_STATUS,
+  GET_CANDIDATES_FILTERS,
+  SET_CANDIDATES_FILTERS,
 } from '../constants';
 import { statuses, randomizeStatus } from '../../utils/candidateStatusUtils';
 
@@ -41,7 +43,7 @@ export const setCandidatesRandomStatuses = () => async (dispatch, getState) => {
 export const modifyCandidateStatus = (name, direction) => async (dispatch, getState) => {
   const { candidates } = getState().candidates;
   const candidateToBeUpdated = candidates.find(candidate => `${candidate.name.first} ${candidate.name.last}` === name);
-  console.log()
+  console.log();
   try {
     switch (direction) {
       case 'prev':
@@ -65,4 +67,25 @@ export const modifyCandidateStatus = (name, direction) => async (dispatch, getSt
   } catch (e) {
     console.error(e.message);
   }
+};
+
+export const getCandidatesFilters = () => (dispatch, getState) => {
+  const filters = JSON.parse(localStorage.getItem('filters'));
+  const filtersState = getState().candidates.filters;
+  if (filters.name !== filtersState.name || filters.city !== filtersState.city) {
+    dispatch({
+      type: GET_CANDIDATES_FILTERS,
+      payload: filters,
+    });
+  }
+  return filters;
+};
+
+export const setCandidatesFilters = filters => (dispatch) => {
+  const filtersJSON = JSON.stringify(filters);
+  localStorage.setItem('filters', filtersJSON);
+  dispatch({
+    type: SET_CANDIDATES_FILTERS,
+    payload: filters,
+  });
 };

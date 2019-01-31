@@ -2,9 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faEnvelope, faPhone, faCalendarDay, faClock,
+  faEnvelope,
+  faPhone,
+  faCalendarDay,
+  faClock,
+  faMapMarkerAlt,
 } from '@fortawesome/free-solid-svg-icons';
-import dateFormatter from '../../utils/dateFormatter'
+import dateFormatter from '../../utils/dateFormatter';
 
 
 const CandidateInfoModal = ({ candidate }) => (
@@ -25,6 +29,11 @@ const CandidateInfoModal = ({ candidate }) => (
       <span><FontAwesomeIcon icon={faCalendarDay} /></span>
       {' '}
       {dateFormatter(candidate.dob.date)}
+    </p>
+    <p className="candidate-info__paragraph">
+      <span><FontAwesomeIcon icon={faMapMarkerAlt} /></span>
+      {' '}
+      {candidate.location.city}
     </p>
     <p className="candidate-info__paragraph">
       <span><FontAwesomeIcon icon={faClock} /></span>

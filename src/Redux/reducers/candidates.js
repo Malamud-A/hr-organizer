@@ -3,11 +3,17 @@ import {
   SET_CANDIDATES_RANDOM_STATUSES,
   CONFIRM_CANDIDATES_READY_STATE,
   MODIFY_CANDIDATE_STATUS,
+  GET_CANDIDATES_FILTERS,
+  SET_CANDIDATES_FILTERS,
 } from '../constants';
 
 const initialState = {
   candidates: [],
   readyState: false,
+  filters: {
+    name: '',
+    city: '',
+  },
 };
 
 export default (state = initialState, action) => {
@@ -35,6 +41,18 @@ export default (state = initialState, action) => {
         ...state,
         candidates: action.payload,
       };
+    case GET_CANDIDATES_FILTERS: {
+      return {
+        ...state,
+        filters: action.payload,
+      };
+    }
+    case SET_CANDIDATES_FILTERS: {
+      return {
+        ...state,
+        filters: action.payload,
+      }
+    }
 
     default:
       return state;
