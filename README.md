@@ -14,4 +14,4 @@ To build the app locally run the commands below
 Then open the URL: http://localhost:3000
 
 ###Demo
-The project demo is available by this URL
+The project demo is available by this URL https://malamud-a.github.io/hr-organizer/
