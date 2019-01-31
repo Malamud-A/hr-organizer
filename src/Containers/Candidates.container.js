@@ -30,4 +30,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   setCandidatesFilters,
 }, dispatch);
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Candidates));
+export default connect(mapStateToProps, mapDispatchToProps)(Candidates);
