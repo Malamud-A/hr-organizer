@@ -1,6 +1,20 @@
 export default () => {
-  const randomizer = Math.random();
-  if (randomizer < 0.33) return 'Applied';
-  if (randomizer > 0.33 && randomizer < 0.66) return 'Interviewing';
-  return 'Hired';
+  const randomizer = parseInt(Math.random() * 3, 10);
+  switch (randomizer) {
+    case 0:
+      return {
+        numeric: randomizer,
+        lingual: 'Applied',
+      };
+    case 1:
+      return {
+        numeric: randomizer,
+        lingual: 'Interviewing',
+      };
+    default:
+      return {
+        numeric: randomizer,
+        lingual: 'Hired',
+      };
+  }
 };

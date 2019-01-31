@@ -1,0 +1,12 @@
+//SCSS utils
+@import "./variables";
+@import "./mixins";
+@import "./reset";
+
+// Component styles
+@import '../Components/Candidates/styles';
+@import '../Components/common/Modal/styles';
+
+#root {
+  font-family: "Arial", sans-serif;
+}

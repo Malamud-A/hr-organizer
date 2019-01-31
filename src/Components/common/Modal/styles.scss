@@ -1,0 +1,44 @@
+.modal {
+  position: absolute;
+  @include flex(row, center, center, nowrap);
+
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(#000, 0.4);
+
+  &__ {
+    &inner {
+      position: relative;
+      width: 40%;
+      border-radius: 10px;
+      border: 3px solid $light-gray;
+      padding: 30px 10px 10px;
+      background: #fff;
+
+      &-- {
+        &close-button {
+          position: absolute;
+          height: 20px;
+          width: 20px;
+          top: 7px;
+          right: 6px;
+          border: 2px solid $light-gray;
+          border-radius: 50%;
+          padding: 0;
+          background: none;
+          color: $light-gray;
+          line-height: 18px;
+          font-weight: 700;
+          cursor: pointer;
+
+          &:hover {
+            color: darken($light-gray, 20%);
+            border-color: darken($light-gray, 20%);
+          }
+        }
+      }
+    }
+  }
+}

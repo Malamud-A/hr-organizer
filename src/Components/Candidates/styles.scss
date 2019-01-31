@@ -1,4 +1,150 @@
 .candidates-lists {
-  display: flex;
-  justify-content: space-between;
+  @include flex(row, space-around, flex-start, nowrap);
+
+  height: 100%;
+
+  &__ { //1-st level of folding
+    &list {
+      position: relative;
+      width: 31%;
+      height: 100%;
+      @include flex(column, flex-start, center, nowrap);
+
+      &:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: 2px;
+        top: 0;
+        right: -4%;
+        background: rgba(#000, 0.6);
+      }
+
+      &-- {
+        &caption {
+          width: 100%;
+          text-align: center;
+          height: 50px;
+          line-height: 50px;
+          font-size: 22px;
+        }
+      }
+
+      &_ { //modificator
+        &applied {
+          .candidate {
+            background: $pink;
+          }
+        }
+
+        &interviewing {
+          .candidate {
+            background: $light-yellow;
+          }
+        }
+
+        &hired {
+          .candidate {
+            background: $light-green;
+          }
+        }
+      }
+
+      .candidate {
+        @include flex(row, space-between, flex-start, wrap);
+
+        width: 90%;
+        min-height: 80px;
+        margin-bottom: 5px;
+        border-radius: 10px;
+        padding: 10px;
+
+        &__ {
+          &photo {
+            border-radius: 50%;
+          }
+
+          &name {
+            width: 64%;
+            text-transform: capitalize;
+            font-size: 18px;
+            font-weight: 400;
+            font-family: "Arial", sans-serif;
+          }
+
+          &controls {
+            @include flex(row, space-between, center, nowrap);
+
+            width: 100%;
+            align-self: flex-end;
+
+            &-- { //2-nd level of folding
+              &change-stage {
+                width: 0;
+                height: 0;
+                padding: 0;
+                background: none;
+                border-top: 8px solid transparent;
+                border-bottom: 8px solid transparent;
+                cursor: pointer;
+
+                &_ {
+                  &prev {
+                    border-right: 8px solid $light-gray;
+                    border-left: none;
+
+                    &:hover {
+                      border-right-color: darken($light-gray, 20%);
+                    }
+                  }
+
+                  &next {
+                    border-left: 8px solid $light-gray;
+                    border-right: none;
+
+                    &:hover {
+                      border-left-color: darken($light-gray, 20%);
+                    }
+                  }
+                }
+              }
+
+              &more-info {
+                border: none;
+                background: none;
+                color: $light-gray;
+                font-size: 16px;
+                cursor: pointer;
+
+                &:hover {
+                  color: darken($light-gray, 20%)
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .candidate-info {
+    @include flex(column, flex-start, center, nowrap);
+
+    &__ {
+      &photo {
+        border-radius: 50%;
+      }
+
+      &name {
+        text-transform: capitalize;
+      }
+
+      &paragraph {
+        span {
+          color: darken($light-gray, 35%);
+          margin-right: 3px;
+        }
+      }
+    }
+  }
 }

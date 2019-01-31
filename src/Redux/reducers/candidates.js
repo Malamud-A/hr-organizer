@@ -1,10 +1,12 @@
 import {
   GET_CANDIDATES,
   SET_CANDIDATES_RANDOM_STATUSES,
+  CONFIRM_CANDIDATES_READY_STATE,
 } from '../constants';
 
 const initialState = {
   candidates: [],
+  readyState: false,
 };
 
 export default (state = initialState, action) => {
@@ -19,6 +21,12 @@ export default (state = initialState, action) => {
         ...state,
         candidates: action.payload,
       };
+    case CONFIRM_CANDIDATES_READY_STATE: {
+      return {
+        ...state,
+        readyState: true,
+      };
+    }
     default:
       return state;
   }
