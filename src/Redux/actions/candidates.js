@@ -70,7 +70,11 @@ export const modifyCandidateStatus = (name, direction) => async (dispatch, getSt
 };
 
 export const getCandidatesFilters = () => (dispatch, getState) => {
-  const filters = JSON.parse(localStorage.getItem('filters'));
+  let filters = JSON.parse(localStorage.getItem('filters'));
+  if (!filters) {
+    filters = { name: '', city: '' };
+    localStorage.setItem('filters', JSON.stringify(filters));
+  }
   const filtersState = getState().candidates.filters;
   if (filters.name !== filtersState.name || filters.city !== filtersState.city) {
     dispatch({
