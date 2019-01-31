@@ -73,13 +73,15 @@
           }
 
           &controls {
-            @include flex(row, space-between, center, nowrap);
+            position: relative;
 
             width: 100%;
+            height: 20px;
             align-self: flex-end;
 
             &-- { //2-nd level of folding
               &change-stage {
+                position: absolute;
                 width: 0;
                 height: 0;
                 padding: 0;
@@ -90,6 +92,8 @@
 
                 &_ {
                   &prev {
+                    top: 0;
+                    left: 0;
                     border-right: 8px solid $light-gray;
                     border-left: none;
 
@@ -99,6 +103,8 @@
                   }
 
                   &next {
+                    top: 0;
+                    right: 0;
                     border-left: 8px solid $light-gray;
                     border-right: none;
 
@@ -110,6 +116,10 @@
               }
 
               &more-info {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
                 border: none;
                 background: none;
                 color: $light-gray;

@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import {
   getCandidates,
   setCandidatesRandomStatuses,
+  modifyCandidateStatus,
 } from '../Redux/actions/candidates';
 import { toggleModalVisibility } from '../Redux/actions/modals';
 import Candidates from '../Components/Candidates/Index';
@@ -18,6 +19,7 @@ const mapStateToProps = ({ candidates, modals }) => ({
 const mapDispatchToProps = dispatch => bindActionCreators({
   getCandidates,
   setCandidatesRandomStatuses,
+  modifyCandidateStatus,
   toggleModalVisibility,
 }, dispatch);
 

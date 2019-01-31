@@ -3,8 +3,9 @@ import {
   GET_CANDIDATES,
   SET_CANDIDATES_RANDOM_STATUSES,
   CONFIRM_CANDIDATES_READY_STATE,
+  MODIFY_CANDIDATE_STATUS,
 } from '../constants';
-import statusRandomizer from '../../utils/statusRandomizer';
+import { statuses, randomizeStatus } from '../../utils/candidateStatusUtils';
 
 export const getCandidates = () => async (dispatch) => {
   try {
@@ -24,7 +25,7 @@ export const setCandidatesRandomStatuses = () => async (dispatch, getState) => {
   const { candidates } = getState().candidates;
   const modifiedCandidates = candidates.map((candidate) => {
     const candidateCopy = { ...candidate };
-    candidateCopy.status = statusRandomizer();
+    candidateCopy.status = randomizeStatus();
     return candidateCopy;
   });
   await dispatch({
@@ -35,4 +36,33 @@ export const setCandidatesRandomStatuses = () => async (dispatch, getState) => {
     type: CONFIRM_CANDIDATES_READY_STATE,
   });
   return true;
+};
+
+export const modifyCandidateStatus = (name, direction) => async (dispatch, getState) => {
+  const { candidates } = getState().candidates;
+  const candidateToBeUpdated = candidates.find(candidate => `${candidate.name.first} ${candidate.name.last}` === name);
+  console.log()
+  try {
+    switch (direction) {
+      case 'prev':
+        candidateToBeUpdated.status = statuses[candidateToBeUpdated.status.numeric - 1];
+        break;
+      case 'next':
+        candidateToBeUpdated.status = statuses[candidateToBeUpdated.status.numeric + 1];
+        break;
+      default:
+        throw { message: `${direction} is not an option for status modification` };
+    }
+
+    const modifiedCandidatesList = [...candidates
+      .filter(candidate => `${candidate.name.first} ${candidate.name.last}` !== name),
+    candidateToBeUpdated,
+    ];
+    await dispatch({
+      type: MODIFY_CANDIDATE_STATUS,
+      payload: modifiedCandidatesList,
+    });
+  } catch (e) {
+    console.error(e.message);
+  }
 };

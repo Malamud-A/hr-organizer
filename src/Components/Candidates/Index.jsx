@@ -20,6 +20,7 @@ class Candidates extends Component {
       isCandidateModalVisible,
       candidateModalData,
       candidatesReadyState,
+      modifyCandidateStatus,
     } = this.props;
     return (
       <div className="candidates-lists">
@@ -33,7 +34,8 @@ class Candidates extends Component {
                 thumbNail={candidate.picture.thumbnail}
                 name={`${candidate.name.first} ${candidate.name.last}`}
                 candidate={candidate}
-                toggleModal={this.toggleCandidateInfoModal}
+                toggleInfoModal={this.toggleCandidateInfoModal}
+                modifyCandidateStatus={modifyCandidateStatus}
               />
             ))}
         </div>
@@ -47,7 +49,8 @@ class Candidates extends Component {
                 thumbNail={candidate.picture.thumbnail}
                 name={`${candidate.name.first} ${candidate.name.last}`}
                 candidate={candidate}
-                toggleModal={this.toggleCandidateInfoModal}
+                toggleInfoModal={this.toggleCandidateInfoModal}
+                modifyCandidateStatus={modifyCandidateStatus}
               />
             ))}
         </div>
@@ -61,7 +64,8 @@ class Candidates extends Component {
                 thumbNail={candidate.picture.thumbnail}
                 name={`${candidate.name.first} ${candidate.name.last}`}
                 candidate={candidate}
-                toggleModal={this.toggleCandidateInfoModal}
+                toggleInfoModal={this.toggleCandidateInfoModal}
+                modifyCandidateStatus={modifyCandidateStatus}
               />
             ))}
         </div>
@@ -80,6 +84,8 @@ Candidates.propTypes = {
   candidates: PropTypes.array.isRequired,
   getCandidates: PropTypes.func.isRequired,
   setCandidatesRandomStatuses: PropTypes.func.isRequired,
+  toggleModalVisibility: PropTypes.func.isRequired,
+  modifyCandidateStatus: PropTypes.func.isRequired,
 };
 
 export default Candidates;
